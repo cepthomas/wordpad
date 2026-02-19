@@ -20,6 +20,13 @@ The WordPad source code has been included as a sample in compilers since 1995 un
 
 ## Changes
 
-- Add MIT license to compiled binaries, which is required by the license
+??? Add MIT license to compiled binaries, which is required by the license
 - Compile only for Unicode
 - Uses RichEdit 2.0 rather than 1.0
+
+# TODO ==============================================================
+- remove reg editing
+- mfc static?
+- remove 32bit
+- add amd?
+
