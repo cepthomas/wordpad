@@ -689,7 +689,7 @@ BEGIN
     IDR_MAINFRAME           "WordPad\nDocument\nWordPad Document\nWord for Windows 6.0 (*.doc)\n.DOC\nWordPad.Document.1\nWordPad Document"
     IDS_TEXT_DOC            "Text Document\nText Documents (*.txt)\n*.txt\nText Document"
     IDS_RICHTEXT_DOC        "Rich Text Format (RTF)\nRich Text Format (*.rtf)\n*.rtf\nRich Text Document"
-    IDS_WRITE_DOC           "Windows Write\nWindows Write (*.wri)\n*.wri\nWrite Document"
+//    IDS_WRITE_DOC           "Windows Write\nWindows Write (*.wri)\n*.wri\nWrite Document"
     IDS_ALL_DOC             "All\nAll Documents (*.*)\n*.*"
     IDS_WINWORD6_DOC        "Word for Windows 6.0\nWord for Windows 6.0 (*.doc)\n*.doc\nWord Document"
     IDS_WINWORD2_DOC        "Word for Windows 2.0\nWord for Windows 2.0 (*.doc)\n*.doc"
