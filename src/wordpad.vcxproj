@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  
   <ItemGroup Label="ProjectConfigurations">
-
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-
   </ItemGroup>
-
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{F52A9A93-2B96-112B-316A-10A653AEE5D6}</ProjectGuid>
@@ -22,49 +17,44 @@
     <RootNamespace>wordpad_next</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
-
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>Dynamic</UseOfMfc>
+    <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
-
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-
   <ImportGroup Label="Shared">
   </ImportGroup>
-
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-
   <PropertyGroup Label="UserMacros" />
-
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>obj\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
@@ -87,7 +77,6 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -114,7 +103,6 @@
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
-
   <ItemGroup>
     <ClInclude Include="about.h" />
     <ClInclude Include="bigicon.h" />
@@ -130,6 +118,7 @@
     <ClInclude Include="formatba.h" />
     <ClInclude Include="formatpa.h" />
     <ClInclude Include="formatta.h" />
+    <ClInclude Include="framework.h" />
     <ClInclude Include="helpids.h" />
     <ClInclude Include="ipframe.h" />
     <ClInclude Include="key.h" />
@@ -139,20 +128,20 @@
     <ClInclude Include="multconv.h" />
     <ClInclude Include="options.h" />
     <ClInclude Include="optionsh.h" />
+    <ClInclude Include="pch.h" />
     <ClInclude Include="pageset.h" />
     <ClInclude Include="penwin.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="ruler.h" />
     <ClInclude Include="splash.h" />
     <ClInclude Include="srvritem.h" />
-    <ClInclude Include="stdafx.h" />
+    <!-- <ClInclude Include="stdafx.h" /> -->
     <ClInclude Include="strings.h" />
     <ClInclude Include="unitspag.h" />
     <ClInclude Include="wordpad.h" />
     <ClInclude Include="wordpdoc.h" />
     <ClInclude Include="wordpvw.h" />
   </ItemGroup>
-
   <ItemGroup>
     <ClCompile Include="about.cpp" />
     <ClCompile Include="bigicon.cpp" />
@@ -179,29 +168,24 @@
     <ClCompile Include="ruler.cpp" />
     <ClCompile Include="splash.cpp" />
     <ClCompile Include="srvritem.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <!-- <ClCompile Include="stdafx.cpp" /> -->
     <ClCompile Include="strings.cpp" />
     <ClCompile Include="unitspag.cpp" />
     <ClCompile Include="wordpad.cpp" />
     <ClCompile Include="wordpdoc.cpp" />
     <ClCompile Include="wordpvw.cpp" />
-
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-
   </ItemGroup>
-
   <!-- <ItemGroup>
     <None Include="wordpad.reg" />
     <None Include="res\wordpad.rc2" />
   </ItemGroup> -->
-
   <ItemGroup>
     <ResourceCompile Include="wordpad.rc" />
   </ItemGroup>
-
   <ItemGroup>
     <Image Include="res\font.bmp" />
     <Image Include="res\formatba.bmp" />
@@ -226,10 +210,7 @@
     <Image Include="res\wordpad.ico" />
     <Image Include="res\write.ico" />
   </ItemGroup>
-
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  
 </Project>

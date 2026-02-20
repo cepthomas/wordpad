@@ -9,9 +9,9 @@
 // See these sources for detailed information regarding the
 // Microsoft Foundation Classes product.
 
-#ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
-#endif
+//#ifndef __AFXWIN_H__
+//	#error include 'stdafx.h' before including this file for PCH
+//#endif
 
 #include "resource.h"       // main symbols
 #include "bigicon.h"
@@ -87,9 +87,13 @@ public:
 	{ ASSERT(n>=0 && n <m_nPrimaryNumUnits); m_nUnits = n; }
 
 // Operations
+#ifdef _REGISTER_APP
+#endif
 	void RegisterFormats();
 	static BOOL CALLBACK StaticEnumProc(HWND hWnd, LPARAM lParam);
+#ifdef _REGISTER_APP
 	void UpdateRegistry();
+#endif
 	void NotifyPrinterChanged(BOOL bUpdatePrinterSelection = FALSE);
 	BOOL PromptForFileName(CString& fileName, UINT nIDSTitle, DWORD dwFlags,
 		BOOL bOpenFileDialog, int* pType = NULL);
@@ -114,7 +118,7 @@ public:
 
 // Implementation
 	COleTemplateServer m_server;
-		// Server object for document creation
+	// Server object for document creation
 
 	//{{AFX_MSG(CWordPadApp)
 	afx_msg void OnAppAbout();

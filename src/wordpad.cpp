@@ -9,7 +9,8 @@
 // See these sources for detailed information regarding the
 // Microsoft Foundation Classes product.
 
-#include "stdafx.h"
+#include "pch.h"
+#include "framework.h"
 
 #include "wordpad.h"
 #include "mainfrm.h"
@@ -54,12 +55,14 @@ CUnit(1440, 180,        720,    1440,       90,         IDS_INCH3_ABBREV,   FALS
 CUnit(1440, 180,        720,    1440,       90,         IDS_INCH4_ABBREV,   FALSE)//inches
 };
 
+#ifdef _REGISTER_APP
 static UINT DoRegistry(LPVOID lpv)
 {
 	ENSURE(lpv != NULL);
 	((CWordPadApp*)lpv)->UpdateRegistry();
 	return 0;
 }
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CWordPadApp
@@ -93,13 +96,15 @@ CWordPadApp::CWordPadApp() : m_optionsText(0), m_optionsRTF(1),
 {
 	_tsetlocale(LC_ALL, _T(""));
 
-	m_nFilterIndex = 1;
-	DWORD dwVersion = ::GetVersion();
-	m_bWin4 = (BYTE)dwVersion >= 4;
-#ifndef _UNICODE
-	m_bWin31 = (dwVersion > 0x80000000 && !m_bWin4);
-#endif
-	m_nDefFont = (m_bWin4) ? DEFAULT_GUI_FONT : ANSI_VAR_FONT;
+//	m_nFilterIndex = 1;
+//	DWORD dwVersion = ::GetVersion();
+//	m_bWin4 = (BYTE)dwVersion >= 4;
+//#ifndef _UNICODE
+//	m_bWin31 = (dwVersion > 0x80000000 && !m_bWin4);
+//#endif
+//	m_nDefFont = (m_bWin4) ? DEFAULT_GUI_FONT : ANSI_VAR_FONT;
+
+	m_nDefFont = DEFAULT_GUI_FONT;// : ANSI_VAR_FONT;
 	m_dcScreen.Attach(::GetDC(NULL));
 	m_bLargeIcons = m_dcScreen.GetDeviceCaps(LOGPIXELSX) >= 120;
 	m_bForceOEM = FALSE;
@@ -275,7 +280,9 @@ BOOL CWordPadApp::InitInstance()
 		UpdateRegistry();
 	else
 #endif
+#ifdef _REGISTER_APP
 		AfxBeginThread(DoRegistry, this, THREAD_PRIORITY_IDLE);
+#endif
 
 	return TRUE;
 }
@@ -624,6 +631,7 @@ BOOL CWordPadApp::OnDDECommand(LPTSTR /*lpszCommand*/)
 	return FALSE;
 }
 
+#ifdef _REGISTER_APP
 /////////////////////////////////////////////////////////////////////////////
 // DDE and ShellExecute support
 
@@ -791,8 +799,7 @@ void CWordPadApp::UpdateRegistry()
 	CoTaskMemFree(lpszClassID);
 }
 
-BOOL RegisterHelper(LPCTSTR* rglpszRegister, LPCTSTR* rglpszSymbols,
-	BOOL bReplace)
+BOOL RegisterHelper(LPCTSTR* rglpszRegister, LPCTSTR* rglpszSymbols, BOOL bReplace)
 {
 	ENSURE(rglpszRegister != NULL);
 	ASSERT(rglpszSymbols != NULL);
@@ -851,6 +858,7 @@ BOOL RegisterHelper(LPCTSTR* rglpszRegister, LPCTSTR* rglpszSymbols,
 
 	return bResult;
 }
+#endif
 
 BOOL CWordPadApp::PreTranslateMessage(MSG* pMsg)
 {

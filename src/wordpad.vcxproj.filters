@@ -108,11 +108,13 @@
     <ClCompile Include="wordpvw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <!-- <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile> -->
   </ItemGroup>
-  
   <ItemGroup>
     <ClInclude Include="about.h">
       <Filter>Header Files</Filter>
@@ -287,9 +289,6 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\wordpad.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\wordpad.rc2">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\write.ico">

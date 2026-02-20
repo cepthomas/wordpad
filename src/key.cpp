@@ -9,7 +9,9 @@
 // See these sources for detailed information regarding the
 // Microsoft Foundation Classes product.
 
-#include "stdafx.h"
+#include "pch.h"
+#include "framework.h"
+
 #include "key.h"
 #include <winreg.h>
 
@@ -18,11 +20,14 @@
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
 
+
+#ifndef _REGISTER_APP
 // Log reg writes without actually performing.
-#define _FAKE
 #include "Windows.h"
-#define MSIZE 500
+const int MSIZE = 500;
 char message[MSIZE+1];
+#pragma warning(disable : 4302 4311)
+#endif
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -30,8 +35,8 @@ char message[MSIZE+1];
 
 void CKey::Close()
 {
-#ifdef _FAKE
-	snprintf(message, MSIZE, "Close() [%ld]\n", (long)m_hKey);
+#ifndef _REGISTER_APP
+	snprintf(message, MSIZE, "Close() [%ld]\n", (unsigned long)m_hKey);
 	OutputDebugStringA(message);
 #else
 	if (m_hKey != NULL)
@@ -45,8 +50,8 @@ void CKey::Close()
 
 BOOL CKey::Create(HKEY hKey, LPCTSTR lpszKeyName)
 {
-#ifdef _FAKE
-	snprintf(message, MSIZE, "Create() [%ld] [%ws]\n", (long)hKey, lpszKeyName);
+#ifndef _REGISTER_APP
+	snprintf(message, MSIZE, "Create() [%ld] [%ws]\n", (unsigned long)hKey, lpszKeyName);
 	m_hKey = hKey;
 	OutputDebugStringA(message);
 	return TRUE;
@@ -58,8 +63,8 @@ BOOL CKey::Create(HKEY hKey, LPCTSTR lpszKeyName)
 
 BOOL CKey::Open(HKEY hKey, LPCTSTR lpszKeyName)
 {
-#ifdef _FAKE
-	snprintf(message, MSIZE, "Open() [%ld] [%ws]\n", (long)hKey, lpszKeyName);
+#ifndef _REGISTER_APP
+	snprintf(message, MSIZE, "Open() [%ld] [%ws]\n", (unsigned long)hKey, lpszKeyName);
 	OutputDebugStringA(message);
 	return TRUE;
 #else
@@ -70,8 +75,8 @@ BOOL CKey::Open(HKEY hKey, LPCTSTR lpszKeyName)
 
 BOOL CKey::SetStringValue(LPCTSTR lpszValue, LPCTSTR lpszValueName)
 {
-#ifdef _FAKE
-	snprintf(message, MSIZE, "SetStringValue() [%ld] [%ws] [%ws]\n", (long)m_hKey, lpszValue, lpszValueName);
+#ifndef _REGISTER_APP
+	snprintf(message, MSIZE, "SetStringValue() [%ld] [%ws] [%ws]\n", (unsigned long)m_hKey, lpszValue, lpszValueName);
 	OutputDebugStringA(message);
 	return TRUE;
 #else
@@ -83,7 +88,7 @@ BOOL CKey::SetStringValue(LPCTSTR lpszValue, LPCTSTR lpszValueName)
 BOOL CKey::GetStringValue(CString& str, LPCTSTR lpszValueName)
 {
 #ifdef _FAKE
-	snprintf(message, MSIZE, "GetStringValue() [%ld] [%ws]\n", (long)m_hKey, lpszValueName);
+	snprintf(message, MSIZE, "GetStringValue() [%ld] [%ws]\n", (unsigned long)m_hKey, lpszValueName);
 	OutputDebugStringA(message);
 	str = "something";
 	return TRUE;
